@@ -19,44 +19,40 @@ const Navbar: React.FC = () => {
             <div className="text-sm">Send your mail securely</div>
           </div>
           <div
-            className="p-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
+            className="px-2 py-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
             onClick={() => setRSA(!rsa)}
           >
             RSA
           </div>
           <div className={`${rsa ? 'block' : 'hidden'} flex flex-col rounded-md bg-victoria-700 p-2 mb-4`}>
-            <a
-              className="mb-1 p-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600"
-              href="/rsa/key"
-            >
-              Generate Key
-            </a>
-            <a
-              className="mb-1 p-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600"
-              href="/rsa"
-            >
-              Encrypt/Decrypt
-            </a>
+            <Link href="/rsa/key" passHref>
+              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Generate Key
+              </a>
+            </Link>
+            <Link href="/rsa" passHref>
+              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Encrypt/Decrypt
+              </a>
+            </Link>
           </div>
           <div
-            className="p-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
+            className="px-2 py-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
             onClick={() => setElg(!elg)}
           >
             Elgamal
           </div>
           <div className={`${elg ? 'block' : 'hidden'} flex flex-col rounded-md bg-victoria-700 p-2 mb-4`}>
-            <a
-              className="mb-1 p-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600"
-              href="/elgamal/key"
-            >
-              Generate Key
-            </a>
-            <a
-              className="mb-1 p-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600"
-              href="/elgamal"
-            >
-              Encrypt/Decrypt
-            </a>
+            <Link href="/elgamal/key" passHref>
+              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Generate Key
+              </a>
+            </Link>
+            <Link href="/elgamal" passHref>
+              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Encrypt/Decrypt
+              </a>
+            </Link>
           </div>
         </div>
       </div>

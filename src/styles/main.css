@@ -4,11 +4,11 @@
 
 @layer base {
   .button {
-    @apply flex w-full items-center justify-center rounded-lg p-2 shadow-none hover:shadow-lg focus:ring focus:outline-none transition duration-300 text-sm min-w-[8rem] text-[1rem];
+    @apply flex w-full font-semibold items-center justify-center rounded-lg p-2 shadow-none hover:shadow-lg focus:ring focus:outline-none transition duration-300 text-sm min-w-[8rem] text-[1rem];
   }
 
   .input-number {
-    @apply border border-botticelli-400 rounded-md shadow-sm p-2 focus:outline-none focus:shadow-md transition duration-100;
+    @apply border border-botticelli-400 w-full bg-botticelli-400 rounded-md shadow-sm p-2 focus:outline-none focus:ring-0 focus:shadow-md transition duration-100;
   }
 
   .input-text {
@@ -45,6 +45,6 @@
     @apply bg-victoria-500 text-lightning-yellow-500 focus:bg-victoria-600;
   }
   .button-secondary {
-    @apply border border-victoria-500 bg-botticelli-400 text-victoria-500 focus:bg-botticelli-500 focus:ring-botticelli-200;
+    @apply bg-lightning-yellow-500 text-victoria-500 focus:bg-botticelli-500 focus:ring-botticelli-200;
   }
 }
