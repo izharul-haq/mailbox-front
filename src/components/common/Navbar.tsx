@@ -5,6 +5,7 @@ import { MdAlternateEmail } from 'react-icons/md';
 const Navbar: React.FC = () => {
   const [rsa, setRSA] = useState<boolean>(false);
   const [elg, setElg] = useState<boolean>(false);
+  const [dfh, setDFH] = useState<boolean>(false);
   
   return (
     <nav className="top-0 right-0">
@@ -24,14 +25,14 @@ const Navbar: React.FC = () => {
           >
             RSA
           </div>
-          <div className={`${rsa ? 'block' : 'hidden'} flex flex-col rounded-md bg-victoria-700 p-2 mb-4`}>
+          <div className={`${rsa ? 'block' : 'hidden'} flex flex-col space-y-1 rounded-md bg-victoria-700 p-2 mb-4`}>
             <Link href="/rsa/key" passHref>
-              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
                 Generate Key
               </a>
             </Link>
             <Link href="/rsa" passHref>
-              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
                 Encrypt/Decrypt
               </a>
             </Link>
@@ -42,15 +43,28 @@ const Navbar: React.FC = () => {
           >
             Elgamal
           </div>
-          <div className={`${elg ? 'block' : 'hidden'} flex flex-col rounded-md bg-victoria-700 p-2 mb-4`}>
+          <div className={`${elg ? 'block' : 'hidden'} flex flex-col space-y-1 rounded-md bg-victoria-700 p-2 mb-4`}>
             <Link href="/elgamal/key" passHref>
-              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
                 Generate Key
               </a>
             </Link>
             <Link href="/elgamal" passHref>
-              <a className="mb-1 px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
                 Encrypt/Decrypt
+              </a>
+            </Link>
+          </div>
+          <div
+            className="px-2 py-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
+            onClick={() => setDFH(!dfh)}
+          >
+            Diffie-Hellman
+          </div>
+          <div className={`${dfh ? 'block' : 'hidden'} flex flex-col space-y-1 rounded-md bg-victoria-700 p-2 mb-4`}>
+            <Link href="/diffie-hellman/key" passHref>
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Generate Key
               </a>
             </Link>
           </div>
