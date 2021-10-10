@@ -48,7 +48,7 @@ const OutputTable: React.FC<Props> = ({ algo, output }) => {
               saveAsTextFile(`${algo}_result`, output as string)
             }}
           >
-            Save to .txt File
+            Save to Text File
           </button>
         </div>
       </div>

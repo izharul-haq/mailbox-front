@@ -10,33 +10,28 @@ export const generateKey = async (reqBody: RSAKeyInput): Promise<RSAKeyOutput> =
   return data;
 };
 
-export const checkKey = async (): Promise<boolean> => {
-  const { data } = await BaseInstance.get<boolean>('/rsa/key/all/check');
-
-  return data;
-}
-
-export const encryptText = async (message: string): Promise<string> => {
+export const encryptText = async (message: string, key: number[]): Promise<string> => {
   const { data } = await BaseInstance.post<number[]>(
     '/rsa/encrypt/text',
-    { message: message }
+    { message: message, key: key }
   );
 
   return data.join(' ');
 };
 
-export const decryptText = async (message: number[]): Promise<string> => {
+export const decryptText = async (message: number[], key: number[]): Promise<string> => {
   const { data } = await BaseInstance.post<string>(
     '/rsa/decrypt/text',
-    { message: message }
+    { message: message, key: key}
   );
 
   return data;
 };
 
-export const encryptFile = async (message: File, filetype: string): Promise<void> => {
+export const encryptFile = async (message: File, filetype: string, key: string): Promise<void> => {
   const formData = new FormData();
   formData.append('message', message);
+  formData.append('key', key);
 
   const { data } = await BaseInstance.post<string>(
     '/rsa/encrypt/file',
@@ -52,9 +47,10 @@ export const encryptFile = async (message: File, filetype: string): Promise<void
   link.click();
 };
 
-export const decryptFile = async (message: File, filetype: string): Promise<void> => {
+export const decryptFile = async (message: File, filetype: string, key: string): Promise<void> => {
   const formData = new FormData();
   formData.append('message', message);
+  formData.append('key', key);
 
   const { data } = await BaseInstance.post<string>(
     '/rsa/decrypt/file',

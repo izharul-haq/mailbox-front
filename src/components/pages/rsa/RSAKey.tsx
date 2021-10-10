@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { generateKey } from '~/api/RSA';
 import { RSAKeyInput } from '~/models/RSA';
+import { saveAsJSONFile } from '~/utils/key';
 
 const RSAKeyPage: React.FC = () => {
   const [e, setE] = useState<number | undefined>();
@@ -57,7 +58,7 @@ const RSAKeyPage: React.FC = () => {
           </div>
         </div>
         <div
-          className="mb-4 flex space-x-4 items-center">
+          className="mb-2 flex space-x-4 items-center">
           <div className="w-max">E</div>
           <div className="w-full">
             <input
@@ -79,10 +80,10 @@ const RSAKeyPage: React.FC = () => {
           </div>
         </div>
       </form>
-      <div className="mb-4 flex justify-between items-center rounded-md p-2 bg-victoria-500">
-        <div className="flex space-x-4 items-center">
-          <div className="text-botticelli-500">Public Key</div>
-          <div>
+      <div className="mb-2 flex flex-col space-y-2 rounded-md p-2 bg-victoria-500">
+        <div className="flex justify-between space-x-2 items-center">
+          <div className="text-botticelli-500 w-32">Public Key</div>
+          <div className="w-full">
             <input
               className="input-text"
               value={ e ? `(${e}, ${n})` : '' }
@@ -90,10 +91,20 @@ const RSAKeyPage: React.FC = () => {
               readOnly
             />
           </div>
+          <button
+            type="button"
+            className="button button-secondary max-w-max"
+            onClick={() => {
+              const content = { e: e as number, n: n as number };
+              saveAsJSONFile(content, 'rsa_public');
+            }}
+          >
+            Save to JSON File
+          </button>
         </div>
-        <div className="flex space-x-4 items-center">
-          <div className="text-botticelli-500">Private Key</div>
-          <div>
+        <div className="flex justify-between space-x-2 items-center">
+          <div className="text-botticelli-500 w-32">Private Key</div>
+          <div className="w-full">
             <input
               className="input-text"
               value={ d ? `(${d}, ${n})` : '' }
@@ -101,6 +112,16 @@ const RSAKeyPage: React.FC = () => {
               readOnly
             />
           </div>
+          <button
+            type="button"
+            className="button button-secondary max-w-max"
+            onClick={() => {
+              const content = { d: d as number, n: n as number };
+              saveAsJSONFile(content, 'rsa_private');
+            }}
+          >
+            Save to JSON File
+          </button>
         </div>
       </div>
     </div>

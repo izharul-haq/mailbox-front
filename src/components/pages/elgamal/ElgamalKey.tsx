@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { generateKey } from '~/api/Elgamal';
 import { ElgamalKeyInput } from '~/models/Elgamal';
+import { saveAsJSONFile } from '~/utils/key';
 
 const ElgamalKey: React.FC = () => {
   const [y, setY] = useState<number | undefined>();
@@ -80,10 +81,10 @@ const ElgamalKey: React.FC = () => {
           </div>
         </div>
       </form>
-      <div className="mb-4 flex justify-between items-center rounded-md p-2 bg-victoria-500">
-        <div className="flex space-x-4 items-center">
-          <div className="text-botticelli-500">Public Key</div>
-          <div>
+      <div className="mb-4 flex flex-col space-y-2 rounded-md p-2 bg-victoria-500">
+        <div className="flex justify-between space-x-2 items-center">
+          <div className="text-botticelli-500 w-32">Public Key</div>
+          <div className="w-full">
             <input
               className="input-text"
               value={ y ? `(${y}, ${g}, ${p})` : '' }
@@ -91,10 +92,20 @@ const ElgamalKey: React.FC = () => {
               readOnly
             />
           </div>
+          <button
+            type="button"
+            className="button button-secondary max-w-max"
+            onClick={() => {
+              const content = { y: y as number, g: g as number, p: p as number };
+              saveAsJSONFile(content, 'elgamal_public');
+            }}
+          >
+            Save to JSON File
+          </button>
         </div>
-        <div className="flex space-x-4 items-center">
-          <div className="text-botticelli-500">Private Key</div>
-          <div>
+        <div className="flex justify-between space-x-2 items-center">
+          <div className="text-botticelli-500 w-32">Private Key</div>
+          <div className="w-full">
             <input
               className="input-text"
               value={ x ? `(${x}, ${p})` : '' }
@@ -102,6 +113,16 @@ const ElgamalKey: React.FC = () => {
               readOnly
             />
           </div>
+          <button
+            type="button"
+            className="button button-secondary max-w-max"
+            onClick={() => {
+              const content = { x: x as number, p: p as number };
+              saveAsJSONFile(content, 'elgamal_private');
+            }}
+          >
+            Save to JSON File
+          </button>
         </div>
       </div>
     </div>
