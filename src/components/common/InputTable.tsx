@@ -27,7 +27,7 @@ const InputTable: React.FC<Props> = ({ algo, onResult }) => {
         await encryptFile(algo, data.file[0], filenameSplit[filenameSplit.length - 1], data.key);
       }
     } catch (err) {
-      alert(err.message);
+      alert((err as Error).message);
     }
   };
 
@@ -43,7 +43,7 @@ const InputTable: React.FC<Props> = ({ algo, onResult }) => {
         await decryptFile(algo, data.file[0], filenameSplit[filenameSplit.length - 1], data.key);
       }
     } catch (err) {
-      alert(err.message);
+      alert((err as Error).message);
     }
   };
 
@@ -130,6 +130,14 @@ const InputTable: React.FC<Props> = ({ algo, onResult }) => {
         <div className="flex justify-between">
           <div></div>
           <div className="flex space-x-2">
+          <button
+              className="button button-secondary"
+              type="submit"
+              form={`${algo}-input`}
+              onClick={() => setMode('dec')}
+            >
+              Decrypt
+            </button>
             <button
               className="button button-primary"
               type="submit"
@@ -137,14 +145,6 @@ const InputTable: React.FC<Props> = ({ algo, onResult }) => {
               onClick={() => setMode('enc')}
             >
               Encrypt
-            </button>
-            <button
-              className="button button-secondary"
-              type="submit"
-              form={`${algo}-input`}
-              onClick={() => setMode('dec')}
-            >
-              Decrypt
             </button>
           </div>
         </div>

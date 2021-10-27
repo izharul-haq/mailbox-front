@@ -16,7 +16,7 @@ const RSAKeyPage: React.FC = () => {
       const { e, d, n } = await generateKey(data);
       setE(e); setD(d); setN(n);
     } catch (err) {
-      alert(err.message);
+      alert((err as Error).message);
     }
   };
 
@@ -31,12 +31,12 @@ const RSAKeyPage: React.FC = () => {
       <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">P</div>
+          <div className="w-8">P</div>
           <div className="w-full">
             <input
               className="input-number"
               type="number"
-              min="2"
+              min="101"
               required
               placeholder="Random prime number"
               {...register('p', { setValueAs: parseInt })}
@@ -45,21 +45,21 @@ const RSAKeyPage: React.FC = () => {
         </div>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">Q</div>
+          <div className="w-8">Q</div>
           <div className="w-full">
             <input
               className="input-number"
               type="number"
-              min="2"
+              min="101"
               required
-              placeholder="Random prime number. Must be different from P"
+              placeholder="Random prime number other than P"
               {...register('q', { setValueAs: parseInt })}
             />
           </div>
         </div>
         <div
           className="mb-2 flex space-x-4 items-center">
-          <div className="w-max">E</div>
+          <div className="w-8">E</div>
           <div className="w-full">
             <input
               className="input-number"
@@ -121,6 +121,35 @@ const RSAKeyPage: React.FC = () => {
             }}
           >
             Save to JSON File
+          </button>
+        </div>
+      </div>
+      <div className="flex space-x-4">
+        <div className="w-full"></div>
+        <div className="flex space-x-2">
+          <button
+            className="button button-primary w-max"
+            onClick={() => {
+              navigator.clipboard.writeText(`${e}, ${n}`);
+            }}
+          >
+            Copy Public Key
+          </button>
+          <button
+            className="button button-primary w-max"
+            onClick={() => {
+              navigator.clipboard.writeText(`${d}, ${n}`);
+            }}
+          >
+            Copy Private Key
+          </button>
+          <button
+            className="button button-primary w-max"
+            onClick={() => {
+              navigator.clipboard.writeText(`${e}, ${d}, ${n}`);
+            }}
+          >
+            Copy Both Key
           </button>
         </div>
       </div>

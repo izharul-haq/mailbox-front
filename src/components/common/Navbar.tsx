@@ -5,6 +5,7 @@ import { MdAlternateEmail } from 'react-icons/md';
 const Navbar: React.FC = () => {
   const [rsa, setRSA] = useState<boolean>(false);
   const [elg, setElg] = useState<boolean>(false);
+  const [plr, setPlr] = useState<boolean>(false);
   const [dfh, setDFH] = useState<boolean>(false);
   
   return (
@@ -50,6 +51,24 @@ const Navbar: React.FC = () => {
               </a>
             </Link>
             <Link href="/elgamal" passHref>
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Encrypt/Decrypt
+              </a>
+            </Link>
+          </div>
+          <div
+            className="px-2 py-1 text-botticelli-500 cursor-pointer text-xl font-semibold mb-2 hover:bg-victoria-700 rounded-md"
+            onClick={() => setPlr(!plr)}
+          >
+            Paillier
+          </div>
+          <div className={`${plr ? 'block' : 'hidden'} flex flex-col space-y-1 rounded-md bg-victoria-700 p-2 mb-4`}>
+            <Link href="/paillier/key" passHref>
+              <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
+                Generate Key
+              </a>
+            </Link>
+            <Link href="/paillier" passHref>
               <a className="px-2 py-1 rounded-md font-semibold text-lg text-botticelli-500 hover:bg-lightning-yellow-500 hover:text-victoria-600">
                 Encrypt/Decrypt
               </a>

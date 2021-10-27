@@ -15,7 +15,7 @@ const DiffieHellmanKey: React.FC = () => {
       const { X, Y, K } = await generateKey(data);
       setX(X); setY(Y); setK(K);
     } catch (err) {
-      alert(err.message);
+      alert((err as Error).message);
     }
   };
 
@@ -30,7 +30,7 @@ const DiffieHellmanKey: React.FC = () => {
       <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">P</div>
+          <div className="w-8">P</div>
           <div className="w-full">
             <input
               className="input-number"
@@ -44,7 +44,7 @@ const DiffieHellmanKey: React.FC = () => {
         </div>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">Q</div>
+          <div className="w-8">Q</div>
           <div className="w-full">
             <input
               className="input-number"
@@ -59,7 +59,7 @@ const DiffieHellmanKey: React.FC = () => {
         <div className="mb-4 flex flex-row space-x-4 p-2 bg-red-600 rounded-md">
           <div
             className="flex space-x-4 items-center w-full">
-            <div className="w-max text-botticelli-500">A</div>
+            <div className="w-8 text-botticelli-500">A</div>
             <div className="w-full">
               <input
                 className="input-number"
@@ -73,7 +73,7 @@ const DiffieHellmanKey: React.FC = () => {
           </div>
           <div
             className="flex space-x-4 items-center w-full">
-            <div className="w-max text-botticelli-500">B</div>
+            <div className="w-8 text-botticelli-500">B</div>
             <div className="w-full">
               <input
                 className="input-number"

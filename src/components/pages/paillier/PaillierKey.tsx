@@ -1,38 +1,38 @@
+import { generateKey } from '~/api/paillier';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { generateKey } from '~/api/Elgamal';
-import { ElgamalKeyInput } from '~/models/Elgamal';
+import { PaillierKeyInput } from '~/models/Paillier';
 import { saveAsJSONFile } from '~/utils/key';
 
-const ElgamalKey: React.FC = () => {
-  const [y, setY] = useState<number | undefined>();
+const PaillierKey: React.FC = () => {
   const [g, setG] = useState<number | undefined>();
-  const [x, setX] = useState<number | undefined>();
-  const [p, setP] = useState<number | undefined>();
+  const [n, setN] = useState<number | undefined>();
+  const [l, setL] = useState<number | undefined>();
+  const [m, setM] = useState<number | undefined>();
 
   const { register, handleSubmit } = useForm();
   
-  const onSubmit = async (data: ElgamalKeyInput) => {
+  const onSubmit = async (data: PaillierKeyInput) => {
     try {
-      const { y, g, x, p } = await generateKey(data);
-      setY(y); setG(g); setX(x); setP(p);
+      const { g, n, l, m } = await generateKey(data);
+      setG(g); setN(n); setL(l); setM(m);
     } catch (err) {
       alert((err as Error).message);
     }
-  };
-
+  }
+  
   return (
     <div className="page-container text-victoria-600">
       <div className="mb-8">
         <div className="page-title mb-1">
           Key Generator
         </div>
-        <div className="italic">For Elgamal algorithm</div>
+        <div className="italic">For Paillier algorithm</div>
       </div>
       <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
-        <div
+      <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">P</div>
+          <div className="w-8">P</div>
           <div className="w-full">
             <input
               className="input-number"
@@ -46,29 +46,15 @@ const ElgamalKey: React.FC = () => {
         </div>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">G</div>
+          <div className="w-8">Q</div>
           <div className="w-full">
             <input
               className="input-number"
               type="number"
-              min="2"
+              min="101"
               required
-              placeholder="Random integer less than P"
-              {...register('g', { setValueAs: parseInt })}
-            />
-          </div>
-        </div>
-        <div
-          className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">X</div>
-          <div className="w-full">
-            <input
-              className="input-number"
-              type="number"
-              min="2"
-              required
-              placeholder="Random integer greater than 1 and two less than P"
-              {...register('x', { setValueAs: parseInt })}
+              placeholder="Random prime number other than P"
+              {...register('q', { setValueAs: parseInt })}
             />
           </div>
         </div>
@@ -81,13 +67,13 @@ const ElgamalKey: React.FC = () => {
           </div>
         </div>
       </form>
-      <div className="mb-4 flex flex-col space-y-2 rounded-md p-2 bg-victoria-500">
+      <div className="mb-2 flex flex-col space-y-2 rounded-md p-2 bg-victoria-500">
         <div className="flex justify-between space-x-2 items-center">
           <div className="text-botticelli-500 w-32">Public Key</div>
           <div className="w-full">
             <input
               className="input-text"
-              value={ y ? `(${y}, ${g}, ${p})` : '' }
+              value={ g ? `(${g}, ${n})` : '' }
               placeholder="Public key goes here"
               readOnly
             />
@@ -96,8 +82,8 @@ const ElgamalKey: React.FC = () => {
             type="button"
             className="button button-secondary max-w-max"
             onClick={() => {
-              const content = { y: y as number, g: g as number, p: p as number };
-              saveAsJSONFile(content, 'elgamal_public');
+              const content = { g: g as number, n: n as number };
+              saveAsJSONFile(content, 'paillier_public');
             }}
           >
             Save to JSON File
@@ -108,7 +94,7 @@ const ElgamalKey: React.FC = () => {
           <div className="w-full">
             <input
               className="input-text"
-              value={ x ? `(${x}, ${p})` : '' }
+              value={ l ? `(${l}, ${m})` : '' }
               placeholder="Private key goes here"
               readOnly
             />
@@ -117,8 +103,8 @@ const ElgamalKey: React.FC = () => {
             type="button"
             className="button button-secondary max-w-max"
             onClick={() => {
-              const content = { x: x as number, p: p as number };
-              saveAsJSONFile(content, 'elgamal_private');
+              const content = { l: l as number, m: m as number };
+              saveAsJSONFile(content, 'paillier_private');
             }}
           >
             Save to JSON File
@@ -131,7 +117,7 @@ const ElgamalKey: React.FC = () => {
           <button
             className="button button-primary w-max"
             onClick={() => {
-              navigator.clipboard.writeText(`${y}, ${g}, ${p}`);
+              navigator.clipboard.writeText(`${g}, ${n}`);
             }}
           >
             Copy Public Key
@@ -139,7 +125,7 @@ const ElgamalKey: React.FC = () => {
           <button
             className="button button-primary w-max"
             onClick={() => {
-              navigator.clipboard.writeText(`${x}, ${p}`);
+              navigator.clipboard.writeText(`${l}, ${m}`);
             }}
           >
             Copy Private Key
@@ -147,7 +133,7 @@ const ElgamalKey: React.FC = () => {
           <button
             className="button button-primary w-max"
             onClick={() => {
-              navigator.clipboard.writeText(`${y}, ${g}, ${x}, ${p}`);
+              navigator.clipboard.writeText(`${g}, ${n}, ${l}, ${m}`);
             }}
           >
             Copy Both Key
@@ -158,4 +144,4 @@ const ElgamalKey: React.FC = () => {
   );
 };
 
-export default ElgamalKey;
+export default PaillierKey;
