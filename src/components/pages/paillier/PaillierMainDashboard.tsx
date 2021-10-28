@@ -8,7 +8,7 @@ const PaillierMainDashboard: React.FC = () => {
   return (
     <div className="page-container text-victoria-600">
       <div className="mb-8">
-      <div className="page-title mb-1">Encrypt and Decrypt</div>
+        <div className="page-title mb-1">Encrypt and Decrypt</div>
         <div className="italic">For Paillier algorithm</div>
       </div>
       <div className="mb-4">
