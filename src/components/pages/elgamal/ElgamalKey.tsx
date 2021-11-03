@@ -32,12 +32,12 @@ const ElgamalKey: React.FC = () => {
       <form className="mb-8" onSubmit={handleSubmit(onSubmit)}>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">P</div>
+          <div className="w-8">P</div>
           <div className="w-full">
             <input
               className="input-number"
               type="number"
-              min="101"
+              min="1009"
               required
               placeholder="Random prime number"
               {...register('p', { setValueAs: parseInt })}
@@ -46,7 +46,7 @@ const ElgamalKey: React.FC = () => {
         </div>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">G</div>
+          <div className="w-8">G</div>
           <div className="w-full">
             <input
               className="input-number"
@@ -60,7 +60,7 @@ const ElgamalKey: React.FC = () => {
         </div>
         <div
           className="mb-4 flex space-x-4 items-center">
-          <div className="w-max">X</div>
+          <div className="w-8">X</div>
           <div className="w-full">
             <input
               className="input-number"

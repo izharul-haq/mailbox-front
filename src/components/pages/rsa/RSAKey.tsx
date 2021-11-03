@@ -36,7 +36,7 @@ const RSAKeyPage: React.FC = () => {
             <input
               className="input-number"
               type="number"
-              min="101"
+              min="1009"
               required
               placeholder="Random prime number"
               {...register('p', { setValueAs: parseInt })}
@@ -50,7 +50,7 @@ const RSAKeyPage: React.FC = () => {
             <input
               className="input-number"
               type="number"
-              min="101"
+              min="1009"
               required
               placeholder="Random prime number other than P"
               {...register('q', { setValueAs: parseInt })}

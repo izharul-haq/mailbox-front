@@ -35,7 +35,7 @@ const DiffieHellmanKey: React.FC = () => {
             <input
               className="input-number"
               type="number"
-              min="2"
+              min="1009"
               required
               placeholder="Random prime number"
               {...register('p', { setValueAs: parseInt })}
@@ -49,7 +49,7 @@ const DiffieHellmanKey: React.FC = () => {
             <input
               className="input-number"
               type="number"
-              min="2"
+              min="1009"
               required
               placeholder="Random prime number less than P"
               {...register('q', { setValueAs: parseInt })}

@@ -1,4 +1,4 @@
-export const saveAsJSONFile = (content: Record<string, number>, filename: string): void => {
+export const saveAsJSONFile = (content: Record<string, unknown>, filename: string): void => {
   const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
   const anchor = document.createElement('a');
   anchor.download = `${filename}.json`;
