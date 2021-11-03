@@ -41,3 +41,7 @@ Install dependencies with
 3. Choose `Generate Key` to generate keys that will be used during encryption and decryption.
 
 4. Choose `Encrypt/Decrypt` to encrypt or decrypt message (text/file) using the choosen algorithm (key must be generated first).
+
+## Contributors
+
+[![contributors](https://contrib.rocks/image?repo=izharul-haq/mailbox-front)](https://github.com/izharul-haq/mailbox-front/graphs/contributors)
